@@ -18,4 +18,6 @@ int main() {
         cin >> N;
         cout << memo[N][0] << " " << memo[N][1] << "\n";
     }
+
+    return 0;
 }
