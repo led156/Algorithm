@@ -23,7 +23,7 @@ int main() {
     for (int i = 1; i < N; i++) {
         parent[i] = i;
     }
-    int number = 0;
+
     int node1, node2, cost, n1_parent, n2_parent, ans = 0;
     for (int i = 0; i < ver.size(); i++) {
         node1 = ver[i].second.first;
@@ -32,12 +32,11 @@ int main() {
         n1_parent = find_parent(node1);
         n2_parent = find_parent(node2);
         if (n1_parent != n2_parent) {
-            number++;
             ans += cost;
             parent[n2_parent] = n1_parent;
         }
     }
 
-    cout << ans << " 개수:" << number;
+    cout << ans;
     return 0;
 }
