@@ -23,8 +23,7 @@ void bt(int pre_num, int size) {
         return ;
     }
     for (int i = 1; i <= N; i++) {
-        if (pre_num != list[i] && promising(size, i)) 
-            bt(list[i], size+1);
+        if (promising(size, list[i])) bt(list[i], size+1);
     }
 }
 
