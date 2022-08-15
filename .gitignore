@@ -82,5 +82,5 @@ replay_pid*
 .DS_Store
 input.txt
 output.txt
-*_WA*
-*_ANS*
+
+*_*
