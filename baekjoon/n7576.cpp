@@ -11,6 +11,7 @@ int board[1000][1000];
 int dx[4] = {-1, 0, 1, 0};
 int dy[4] = {0, 1, 0, -1};
 queue<pair<int, int> > ripe;
+int not_ripe_cnt;
 
 bool isRipe() {
     int cnt_notRipe = 0;
@@ -37,6 +38,7 @@ void simulation() {
             int ny = y+dy[i];
             if (nx >= 0 && nx < N && ny >= 0 && ny < M && board[nx][ny] == NRIPE) {
                 board[nx][ny] = RIPE;
+                --not_ripe_cnt;
                 new_ripe.push(make_pair(nx, ny));
             } 
         }
@@ -55,13 +57,17 @@ int main() {
         for (int j = 0; j < M; ++j) {
             cin >> board[i][j];
             if (board[i][j] == RIPE) ripe.push(make_pair(i, j));
+            if (board[i][j] == NRIPE) ++not_ripe_cnt;
         }
     }
 
     while (!ripe.empty()) simulation();
 
-    if (isRipe()) cout << ans;
-    else cout << -1;
+    // if (isRipe()) cout << ans;
+    // else cout << -1;
+
+    if (not_ripe_cnt > 0) cout << -1;
+    else cout << ans;
 
     return 0;
 }
