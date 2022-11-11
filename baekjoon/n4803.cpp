@@ -14,7 +14,10 @@ bool dfs(int node, int pre) {
 
     for (int i = 0; i < ver[node].size(); ++i) {
         int nxt = ver[node][i];
-        if (nxt == pre) continue;
+        
+        if (nxt == pre) continue; // 부모일땐 스킵
+
+        /* 사이클이 존재할 때 : 자식이라해서 확인했는데, 이미 visit 했다? -> 사이클이 존재함 */
         if (visiting[nxt]) return false;
         if (!dfs(nxt, node)) return false;
     }
