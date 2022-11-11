@@ -14,14 +14,14 @@ int main() {
 
         for (int j = 1; j <= K; j++) {
             cin >> cost[j];
-            sumCost[j] = sumCost[j-1] + cost[j];
+            sumCost[j] = sumCost[j-1] + cost[j]; // j장까지의 cost 합
         }
 
-        for (int d = 1; d <= K; d++) {
-            for (int a = 1; a <= K - d; a++) {
+        for (int d = 1; d <= K; d++) { // 시작-끝 장수의 차이
+            for (int a = 1; a <= K - d; a++) { // 시작장수
                 dp[a][a + d] = INF;
-                for (int k = a; k < a + d; k++) {
-                    dp[a][a + d] = min(dp[a][a + d], dp[a][k] + dp[k + 1][a + d] + sumCost[a + d] - sumCost[a - 1]);
+                for (int k = a; k < a + d; k++) { // 시작-끝장 사이의 mid
+                    dp[a][a + d] = min(dp[a][a + d], dp[a][k] + dp[k + 1][a + d] + sumCost[a + d] - sumCost[a - 1]); // 비용 : 두 개의 파일을 합칠 때 필요한 비용(시간 등)이 두 파일 크기의 합
                 }
             }
         }
