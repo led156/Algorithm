@@ -9,19 +9,14 @@ int solution(vector<int> people, int limit) {
     
     sort(people.begin(), people.end());
     
-    while (people.size() > 0) {
-        int remain = limit - people[0];
-        vector<int>::iterator ub = upper_bound(people.begin()+1, people.end(), remain);
-        vector<int>::iterator lb = lower_bound(people.begin()+1, people.end(), remain);
-        
-        int idx = ub - lb;
-        if (idx > 0) {
-            people.erase(lb);
-            people.erase(people.begin());
+    int idx = 0;
+    int left = 0, right = people.size()-1;
+    
+    while (left <= right) {
+        if (people[left] + people[right] <= limit) {
+            ++left;
         }
-        else {
-            people.erase(people.begin());
-        }
+        --right;
         ++answer;
     }
     
