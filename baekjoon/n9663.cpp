@@ -1,37 +1,37 @@
 #include <iostream>
-#include <cmath>
+#include <vector>
+#include <algorithm>
 using namespace std;
+#define MAX_LEN 16
 
-int N, cnt = 0;
-int arr[15];
+int N, ans = 0;
+int board[MAX_LEN];
 
-/*
- *  같은 열, 같은 행, 대각선 상에 있으면 X.
- */
-int promising(int n) {
-    for (int i = 0; i < n; i++) {
-        //  같은 행에 존재    ||   대각선 상
-        if (arr[i]==arr[n] || (n-i==abs(arr[n]-arr[i]))) return 0;
+bool promising(int x) {
+    for (int i = 1; i < x; ++i) {
+        if (board[i] == board[x] || x-i == abs(board[x]-board[i])) return false;
     }
-    return 1;
+    return true;
 }
 
-void bt(int n) {
-    if (n == N) {
-        cnt++;
-        return;
+void bt(int x) {
+    if (x > N) {
+        ++ans;
+        return ;
     }
-    for (int i = 0; i < N; i++) {
-        arr[n] = i;
-        if (promising(n)) {
-            bt(n+1);
-        }
+
+    for (int y = 1; y <= N; ++y) {
+        board[x] = y;
+        if (promising(x)) bt(x+1);
     }
 }
 
 int main() {
     cin >> N;
-    bt(0);
-    cout << cnt;
+
+    bt(1);
+
+    cout << ans;
+
     return 0;
 }
