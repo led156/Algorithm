@@ -80,7 +80,7 @@ int main() {
     int right_idx = 0;
 
     while (right_idx < fly.size()) {
-        while (true) {
+        while (left_idx <= right_idx) {
             if (flyboard[x][y] >= fly[left_idx] && flyboard[x][y] <= fly[right_idx]) {
                 memset(visited, false, sizeof(visited));
                 // cout << "\nBFS ";
