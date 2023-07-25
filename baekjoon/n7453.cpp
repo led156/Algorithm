@@ -2,41 +2,37 @@
 #include <vector>
 #include <algorithm>
 using namespace std;
+#define MAX_LEN 4000
 
+int n, a, b, c, d;
+vector<int> A(MAX_LEN), B(MAX_LEN), C(MAX_LEN), D(MAX_LEN);
+vector<long long> AB, CD;
+long long ans = 0;
 
 int main() {
-    int n;
+    ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
     cin >> n;
 
-    vector<long long> A(n), B(n), C(n), D(n);
-    for (int i = 0; i < n; i++) {
+    for (int i = 0; i < n; ++i) {
         cin >> A[i] >> B[i] >> C[i] >> D[i];
     }
 
-    // A, B
-    vector<long long> ab;
-    for (int i = 0; i < n; i++) {
-        for (int j = 0; j < n; j++) {
-            ab.push_back(A[i]+B[j]);
-            //printf("%d ", A[i]+B[j]);
+    for (int i = 0; i < n; ++i) {
+        for (int j = 0; j < n; ++j) {
+            AB.push_back(A[i]+B[j]);
+            CD.push_back(C[i]+D[j]);
         }
     }
-    //printf("\n AB ----- CD \n");
-    // B, C
-    vector<long long> cd;
-    for (int i = 0; i < n; i++) {
-        for (int j = 0; j < n; j++) {
-            cd.push_back(C[i]+D[j]);
-            //printf("%d ", C[i]+D[j]);
-        }
+
+    sort(AB.begin(), AB.end());
+    sort(CD.begin(), CD.end());
+
+    for (int i = 0; i < AB.size(); ++i) {
+        long long cnt = upper_bound(CD.begin(), CD.end(), -AB[i])-lower_bound(CD.begin(), CD.end(), -AB[i]);
+        ans += cnt;
     }
-    //printf("\n-------------\n");
-    long long ans = 0;
-    sort(ab.begin(), ab.end());
-    sort(cd.begin(), cd.end());
-    for (int i = 0; i < ab.size(); i++) {
-        ans += (upper_bound(cd.begin(), cd.end(), -ab[i]) - (lower_bound(cd.begin(), cd.end(), -ab[i])));
-    }
+
     cout << ans;
+
     return 0;
 }
