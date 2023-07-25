@@ -21,7 +21,7 @@ bool isRange(int a, int b) {
     return a >= 0 && a < N && b >= 0 && b < N;
 }
 
-bool dfs(int minfly, int maxfly) {
+bool bfs(int minfly, int maxfly) {
     queue<pair<int, int> > que;
     que.push({x, y});
     visited[x][y] = true;
@@ -83,8 +83,8 @@ int main() {
         while (true) {
             if (flyboard[x][y] >= fly[left_idx] && flyboard[x][y] <= fly[right_idx]) {
                 memset(visited, false, sizeof(visited));
-                // cout << "\nDFS ";
-                if (!dfs(fly[left_idx], fly[right_idx])) break;
+                // cout << "\nBFS ";
+                if (!bfs(fly[left_idx], fly[right_idx])) break;
 
                 if (fly[right_idx] - fly[left_idx] < ans) ans = fly[right_idx] - fly[left_idx];
                 ++left_idx;
