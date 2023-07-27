@@ -2,29 +2,27 @@
 #include <vector>
 #include <algorithm>
 using namespace std;
-#define MAX 4000000
+#define MAX_N 4000001
 
 int N;
+bool isNotPrime[MAX_N];
 
 int main() {
     ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
     cin >> N;
 
-    bool isNotPrime[MAX+1];
     isNotPrime[1] = true;
     
-    for (int i = 2; i*i <= MAX; ++i) {
+    for (int i = 2; i*i < MAX_N; ++i) {
         if (!isNotPrime[i]) {
-            for (int j = i*i; j <= MAX; j += i) {
-                isNotPrime[j] = true;
-            }
+            for (int j = i*i; j < MAX_N; j += i) isNotPrime[j] = true;
         }
     }
 
     vector<int> primesum;
     primesum.push_back(0);
     int sum = 0;
-    for (int i = 2; i <= MAX; ++i) {
+    for (int i = 2; i < MAX_N; ++i) {
         if (!isNotPrime[i]) {
             sum += i;
             primesum.push_back(sum);
