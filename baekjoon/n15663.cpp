@@ -2,45 +2,46 @@
 #include <vector>
 #include <algorithm>
 using namespace std;
+#define MAX_NUM 9
 
-int N, M;
-vector<int> list;
-int ans[8];
-int used[8];
+int N, M, n;
+vector<int> num;
+int ans[MAX_NUM];
+bool used[MAX_NUM];
 
-// (1) 중복되는 답을 출력해서는 안 된다. -> 연속적으로 같은 수 선택X
-// (2) 사전 순 증가 -> sort ...
-
-void dfs(int size) {
-    if (size >= M) {
-        for (int i = 0; i < M; i++)
+void bt(int idx) {
+    if (idx > M) {
+        for (int i = 1; i <= M; ++i) {
             cout << ans[i] << " ";
-        cout << "\n";
-        return ;
+        }
+        cout << '\n';
+        return;
     }
 
     int printed = -1;
 
-    for (int i = 0; i < N; i++) {
-        if (!used[i] && printed != list[i]) {
-            used[i] = 1;
-            ans[size] = list[i];
-            printed = list[i];
-            dfs(size+1);
-            used[i] = 0;
+    for (int i = 0; i < num.size(); ++i) {
+        if (!used[i] && printed != num[i]) {
+            ans[idx] = num[i];
+            used[i] = true;
+            printed = num[i];
+            bt(idx+1);
+            used[i] = false;
         }
     }
 
 }
 
 int main() {
+    ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
     cin >> N >> M;
-    int temp;
-    for (int i = 0; i < N; i++) {
-        cin >> temp;
-        list.push_back(temp);
+    for (int i = 0; i < N; ++i) {
+        cin >> n;
+        num.push_back(n);
     }
-    sort(list.begin(), list.end());
-    dfs(0);
+    sort(num.begin(), num.end());
+
+    bt(1);
+
     return 0;
 }
