@@ -2,51 +2,47 @@
 #include <vector>
 #include <algorithm>
 using namespace std;
+#define MAX_N 1000001
 
-int n, m;
-int parent[1000001];
+int n, m, k, a, b;
+int parent[MAX_N];
 
-int find_parent(int node) {
-    if (parent[node] == node) return node;
-    else return parent[node] = find_parent(parent[node]);
+void init_parent() {
+    for (int i = 0; i <= n; ++i) {
+        parent[i] = i;
+    }
 }
 
-bool is_union_(int a, int b) {
-    int pa = find_parent(a);
-    int pb = find_parent(b);
-    return pa == pb;
+
+int find_parent(int a) {
+    if (parent[a] == a) return a;
+    return parent[a] = find_parent(parent[a]);
 }
 
-void union_find(int a, int b) {
-    int pa = find_parent(a);
-    int pb = find_parent(b);
 
-    if (pa != pb) {
-        if (pa > pb)
-            parent[pa] = pb;
-        else 
-            parent[pb] = pa;
+void union_parent(int a, int b) {
+    int ap = find_parent(a);
+    int bp = find_parent(b);
+
+    if (ap != bp) {
+        if (ap >= bp) parent[bp] = ap;
+        else parent[ap] = bp;
     }
 }
 
 int main() {
     ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
-    int n, m;
     cin >> n >> m;
+    init_parent();
 
-    for (int i = 0; i <= n; ++i) {
-        parent[i] = i;
-    }
-
-    int logic, a, b;
     for (int i = 0; i < m; ++i) {
-        cin >> logic >> a >> b;
-        if (logic) { // 1 : 포함 확인
-            if (is_union_(a, b)) cout << "YES\n";
+        cin >> k >> a >> b;
+        if (k) { // 포함 확인
+            if (find_parent(a) == find_parent(b)) cout << "YES\n";
             else cout << "NO\n";
         }
-        else { // 0 : 합치기
-            union_find(a, b);
+        else { // 합집합
+            union_parent(a, b);
         }
     }
 
