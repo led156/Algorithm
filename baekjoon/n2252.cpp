@@ -1,35 +1,39 @@
 #include <iostream>
 #include <vector>
+#include <algorithm>
 #include <queue>
 using namespace std;
+#define MAX_N 32001
 
-int N, M;
-vector<int> connect[32001];
-int in_ver[32001];
+int N, M, A, B;
+vector<vector<int>> graph(MAX_N);
+int indegree[MAX_N];
+queue<int> que;
 
 int main() {
+    ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
     cin >> N >> M;
-    int a, b;
-    for (int i = 0; i < M; i++) {
-        cin >> a >> b;
-        connect[a].push_back(b);
-        ++in_ver[b];
+
+    for (int i = 0; i < M; ++i) {
+        cin >> A >> B; // A -> B
+        graph[A].push_back(B);
+        ++indegree[B];
     }
 
-    queue<int> que;
-    for (int i = 1; i <= N; i++) {
-        if (in_ver[i] == 0) {
-            que.push(i);
-        }
+    /* SOLUTION */
+    for (int i = 1; i <= N; ++i) {
+        if (indegree[i]==0) que.push(i);
     }
 
     while (!que.empty()) {
-        int node = que.front();
+        A = que.front();
         que.pop();
-        cout << node << " ";
-        for (int i = 0; i < connect[node].size(); i++) {
-            if (--in_ver[connect[node][i]] == 0) {
-                que.push(connect[node][i]);
+        cout << A << " ";
+
+        for (int i = 0; i < graph[A].size(); ++i) {
+            B = graph[A][i];
+            if (--indegree[B]==0) {
+                que.push(B);
             }
         }
     }
