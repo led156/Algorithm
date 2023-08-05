@@ -15,5 +15,5 @@
 |6|07.31|그래프(1)|[백준 1922 네트워크 연결](https://www.acmicpc.net/problem/1922)<br>[백준 2458 키 순서](https://www.acmicpc.net/problem/2458)<br>[백준 1516 게임 개발](https://www.acmicpc.net/problem/1516)<br>[백준 2887 행성 터널](https://www.acmicpc.net/problem/2887)||
 |7|08.01|그래프(2)|[백준 3176 도로 네트워크](https://www.acmicpc.net/problem/3176)<br>[백준 18227 성대나라의 물탱크](https://www.acmicpc.net/problem/18227)<br>[백준 1854 K번째 최단경로 찾기](https://www.acmicpc.net/problem/1854)<br>[백준 5719 거의 최단 경로](https://www.acmicpc.net/problem/5719)||
 |8|08.02|그래프(3), 동적 계획법(1)|[백준 3860 할로윈 묘지](https://www.acmicpc.net/problem/3860)<br>[백준 11404 플로이드](https://www.acmicpc.net/problem/11404)<br><br>[백준 11660 구간 합 구하기 5](https://www.acmicpc.net/problem/11660)<br>[백준 2579 계단 오르기](https://www.acmicpc.net/problem/2579)||
-|9|08.03|동적 계획법(2)|||
-|10|08.04||||
+|9|08.03|동적 계획법(2)|[백준 11049 행렬 곱셈 순서](https://www.acmicpc.net/problem/11049)<br>[백준 14003 가장 긴 증가하는 부분 수열 5](https://www.acmicpc.net/problem/14003)<br>[백준 7579 앱](https://www.acmicpc.net/problem/7579)<br>[백준 2098 외판원 순회](https://www.acmicpc.net/problem/2098)||
+|10|08.04||[백준 5419 북서풍](https://www.acmicpc.net/problem/5419)<br>[백준 1365 꼬인 전깃줄](https://www.acmicpc.net/problem/1365)<br>[백준 14285 간선 끊어가기](https://www.acmicpc.net/problem/14285)<br>[백준 14574 헤븐스 키친](https://www.acmicpc.net/problem/14574)||
